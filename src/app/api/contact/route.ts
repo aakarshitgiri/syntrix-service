@@ -24,14 +24,13 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: process.env.FROM_EMAIL || "onboarding@resend.dev",
-      to: process.env.TO_EMAIL || "your-email@example.com",
-      subject: `New Contact Form Submission from ${name}`,
+      from: process.env.FROM_EMAIL,
+      to: ['contact@syntrixtechnology.com', 'aakarshitgiri1998@gmail.com', 'psvivek31@gmail.com'] ,
+      subject: `New Contact Form Submission from ${name} - Syntrix Technology`,
       html: `
-        <h2>New Contact Form Submission</h2>
+        <h2>New Contact Form Submission - Syntrix Technology</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
