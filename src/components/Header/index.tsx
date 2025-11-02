@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
 const Header = () => {
@@ -57,14 +56,14 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src="/images/logo/logo-2.png"
                   alt="logo"
                   width={140}
                   height={30}
                   className="w-full dark:hidden"
                 />
                 <Image
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo.png"
                   alt="logo"
                   width={140}
                   height={30}
@@ -165,9 +164,6 @@ const Header = () => {
                 >
                   Contact Us
                 </Link>
-                <div>
-                  <ThemeToggler />
-                </div>
               </div>
             </div>
           </div>

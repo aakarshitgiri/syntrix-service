@@ -44,7 +44,7 @@ const AboutSectionTwo = () => {
               </div>
               <div className="mb-1">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Cybersecurity Services (Our Focus)
+                  Cybersecurity Services
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
                   Managed Threat Detection & Response (MDR), Cloud Security & CSPM, Email & Data Security (DLP), SOAR & Security Automation, Identity Governance & Zero-Trust, Vulnerability Management, and Brand Protection.

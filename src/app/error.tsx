@@ -1,14 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
 
-import { Metadata } from "next";
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
 
-export const metadata: Metadata = {
-  title: "Error Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Error Page for Startup Nextjs Template",
-  // other metadata
-};
-
-const ErrorPage = () => {
   return (
     <>
       <section className="relative z-10 bg-white pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -142,18 +148,26 @@ const ErrorPage = () => {
                   </svg>
                 </div>
                 <h3 className="mb-4 text-3xl font-bold text-black sm:text-4xl">
-                  Sorry, the page can't be found
+                  Something went wrong!
                 </h3>
                 <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  The page you were looking for appears to have been moved,
-                  deleted or does not exist.
+                  We encountered an unexpected error. Please try again or contact
+                  support if the problem persists.
                 </p>
-                <Link
-                  href="/"
-                  className="px-8 py-3 text-base font-bold text-white duration-300 rounded-md bg-primary shadow-signUp hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
-                >
-                  Back to Homepage
-                </Link>
+                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <button
+                    onClick={reset}
+                    className="px-8 py-3 text-base font-bold text-white duration-300 rounded-md bg-primary shadow-signUp hover:bg-primary/90 md:px-9 lg:px-8 xl:px-9"
+                  >
+                    Try again
+                  </button>
+                  <Link
+                    href="/"
+                    className="px-8 py-3 text-base font-bold text-primary duration-300 rounded-md bg-white border-2 border-primary shadow-signUp hover:bg-primary hover:text-white md:px-9 lg:px-8 xl:px-9"
+                  >
+                    Back to Homepage
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -521,7 +535,7 @@ const ErrorPage = () => {
                 x1="410"
                 y1="8.00001"
                 x2="332.729"
-                y2="32.2741"
+                y2="34.2741"
                 gradientUnits="userSpaceOnUse"
               >
                 <stop stopColor="#4A6CF7" />
@@ -533,6 +547,5 @@ const ErrorPage = () => {
       </section>
     </>
   );
-};
+}
 
-export default ErrorPage;

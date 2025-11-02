@@ -1,9 +1,66 @@
 "use client";
 
+import { useState } from "react";
 import { useTheme } from "next-themes";
 
 const NewsLatterBox = () => {
   const { theme } = useTheme();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear status when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: "" });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to subscribe");
+      }
+
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you for subscribing! We'll keep you updated.",
+      });
+      setFormData({ name: "", email: "" });
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to subscribe. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="shadow-three dark:bg-gray-dark relative z-10 rounded-xs bg-white p-8 sm:p-11 lg:p-8 xl:p-11">
@@ -13,28 +70,47 @@ const NewsLatterBox = () => {
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
         Subscribe to receive the latest insights on cybersecurity best practices, cloud engineering tips, and technology trends from our expert team.
       </p>
-      <div>
+      <form onSubmit={handleSubmit}>
+        {submitStatus.type && (
+          <div
+            className={`mb-4 rounded-xs px-4 py-3 text-sm ${
+              submitStatus.type === "success"
+                ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+            }`}
+          >
+            {submitStatus.message}
+          </div>
+        )}
         <input
           type="text"
           name="name"
+          value={formData.name}
+          onChange={handleChange}
           placeholder="Enter your name"
+          required
           className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
         />
         <input
           type="email"
           name="email"
+          value={formData.email}
+          onChange={handleChange}
           placeholder="Enter your email"
+          required
           className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
         />
-        <input
+        <button
           type="submit"
-          value="Subscribe"
-          className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
-        />
+          disabled={isSubmitting}
+          className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isSubmitting ? "Subscribing..." : "Subscribe"}
+        </button>
         <p className="text-body-color dark:text-body-color-dark text-center text-base leading-relaxed">
-          No spam guaranteed, So please don’t send any spam mail.
+          No spam guaranteed, So please don't send any spam mail.
         </p>
-      </div>
+      </form>
 
       <div>
         <span className="absolute top-7 left-2">
