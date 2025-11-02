@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "404 - Page Not Found | Syntrix Solutions",
+  title: "404 - Page Not Found | Syntrix Technology",
   description: "The page you were looking for cannot be found.",
 };
 

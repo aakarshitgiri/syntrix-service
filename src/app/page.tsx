@@ -12,7 +12,7 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Syntrix Solutions - Cybersecurity & Technology Services",
+  title: "Syntrix Technology - Cybersecurity & Technology Services",
   description: "Modern technology company helping businesses innovate, scale, and secure their digital ecosystem with expertise across software engineering, cloud, and cybersecurity.",
   // other metadata
 };

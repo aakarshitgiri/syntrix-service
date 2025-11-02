@@ -15,7 +15,7 @@ const Hero = () => {
                   Secure Your Digital Ecosystem with Enterprise-Grade Cybersecurity & Technology Solutions
                 </h1>
                 <p className="mb-12 text-base leading-relaxed! text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Syntrix Solutions is a modern technology company helping businesses innovate, scale, and secure their digital ecosystem. With expertise across software engineering, cloud, and cybersecurity, we deliver end-to-end solutions that power digital success.
+                  Syntrix Technology is a modern technology company helping businesses innovate, scale, and secure their digital ecosystem. With expertise across software engineering, cloud, and cybersecurity, we deliver end-to-end solutions that power digital success.
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link

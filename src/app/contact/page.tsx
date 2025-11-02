@@ -4,8 +4,8 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Syntrix Solutions",
-  description: "Get in touch with Syntrix Solutions to discuss your cybersecurity, software development, cloud engineering, or automation needs.",
+  title: "Contact Us | Syntrix Technology",
+  description: "Get in touch with Syntrix Technology to discuss your cybersecurity, software development, cloud engineering, or automation needs.",
   // other metadata
 };
 

@@ -24,7 +24,7 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Why Choose Syntrix Solutions"
+                title="Why Choose Syntrix Technology"
                 paragraph="We specialize in modern, enterprise-grade security and technology services tailored for global businesses. Our team of expert engineers and security analysts delivers cost-effective solutions from India while maintaining world-class quality standards."
                 mb="44px"
               />
